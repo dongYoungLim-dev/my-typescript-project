@@ -1,7 +1,13 @@
-let todoItems: { id: number; title: string; done: boolean }[];
+interface Todo {
+  id: number;
+  title: string;
+  done: boolean;
+}
+
+let todoItems: Todo[];
 
 // api
-function fetchTodoItems(): { id: number; title: string; done: boolean }[] {
+function fetchTodoItems(): Todo[] {
   const todos: { id: number; title: string; done: boolean }[] = [
     { id: 1, title: '안녕', done: false },
     { id: 2, title: '타입', done: false },
@@ -11,7 +17,7 @@ function fetchTodoItems(): { id: number; title: string; done: boolean }[] {
 }
 
 // crud methods
-function fetchTodos(): { id: number; title: string; done: boolean }[] {
+function fetchTodos(): Todo[] {
   const todos: {
     id: number;
     title: string;
@@ -20,7 +26,7 @@ function fetchTodos(): { id: number; title: string; done: boolean }[] {
   return todos;
 }
 
-function addTodo(todo: { id: number; title: string; done: boolean }): void {
+function addTodo(todo: Todo): void {
   todoItems.push(todo);
 }
 
@@ -28,20 +34,17 @@ function deleteTodo(index: number): void {
   todoItems.splice(index, 1);
 }
 
-function completeTodo(
-  index: number,
-  todo: { id: number; title: string; done: boolean }
-): void {
+function completeTodo(index: number, todo: Todo): void {
   todo.done = true;
   todoItems.splice(index, 1, todo);
 }
 
 // business logic
-function logFirstTodo(): { id: number; title: string; done: boolean } {
+function logFirstTodo(): Todo {
   return todoItems[0];
 }
 
-function showCompleted(): { id: number; title: string; done: boolean }[] {
+function showCompleted(): Todo[] {
   return todoItems.filter(item => item.done);
 }
 
@@ -49,12 +52,11 @@ function showCompleted(): { id: number; title: string; done: boolean }[] {
 function addTwoTodoItems(): void {
   // addTodo() 함수를 두 번 호출하여 todoItems에 새 할 일이 2개 추가되어야 합니다.
 
-  const todo: { id: number; title: string; done: boolean }[] = fetchTodos();
+  const todo: Todo[] = fetchTodos();
   const lastObj = todo[todo.length - 1];
   const lastId: number = lastObj.id;
-  console.log(lastId);
 
-  const newTodos: { id: number; title: string; done: boolean }[] = [
+  const newTodos: Todo[] = [
     { id: lastId + 1, title: '하나', done: false },
     { id: lastId + 2, title: '둘', done: false },
   ];
