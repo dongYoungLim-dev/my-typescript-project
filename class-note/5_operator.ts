@@ -32,3 +32,10 @@ function askSomeone(someone: Developer1 | Person1) {
   someone.age
   someone.skill
 }
+
+
+function askSomeone1(someone: Developer1 & Person1) {  // 인터섹션을 사용하면 두개의 타입에 모두 해당하는 속성을 포함한 하나의 타입이다. 
+  someone.name;
+  someone.age;
+  someone.skill;
+}
